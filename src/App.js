@@ -1,23 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from "react";
+import "./App.css";
 
 function App() {
+  const [solution, setSolution] = useState(null);
+
+  useEffect(() => {
+    console.log("he;;o");
+    fetch("https://my-json-server.typicode.com/sidharthbhasin21/json-server/db")
+      .then((res) => res.json())
+      .then((json) => {
+        console.log(json.solutions);
+        const randomSolution =
+          json.solutions[Math.floor(Math.random() * json.solutions.length)];
+        // console.log(randomSolution);
+        // console.log(randomSolution);
+        setSolution(randomSolution.word);
+      });
+
+    // getSolution();
+  }, []);
+
+  // async function getSolution() {
+  //   const data = await fetch(
+  //     "https://my-json-server.typicode.com/sidharthbhasin21/json-server/db"
+  //   );
+  //   const json = await data.json();
+  //   // console.log(json);
+  //   const randomSolution = json[Math.floor(Math.random() * json.length)];
+  //   setSolution(randomSolution.word);
+  //   console.log(solution);
+  // }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Guess the word</h1>
+      <div> Solution is : {solution}</div>
     </div>
   );
 }
