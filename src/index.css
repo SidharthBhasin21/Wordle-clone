@@ -115,6 +115,12 @@
   letter-spacing: 1px;
 }
 
+.footer-container{
+  margin: 20px auto 0px auto;
+  padding: 20px;
+  background: #eee;
+
+}
 /* ANIMATIOINS */
 
 @keyframes flip {
