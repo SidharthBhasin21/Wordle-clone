@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import "./App.css";
+import Footer from "./components/Footer";
+import Wordle from "./components/Wordle";
 
 function App() {
   const [solution, setSolution] = useState(null);
 
   useEffect(() => {
-    console.log("he;;o");
     fetch("https://my-json-server.typicode.com/sidharthbhasin21/json-server/db")
       .then((res) => res.json())
       .then((json) => {
@@ -33,7 +34,8 @@ function App() {
   return (
     <div className="App">
       <h1>Guess the word</h1>
-      <div> Solution is : {solution}</div>
+      {solution && <Wordle solution={solution} />}
+      <Footer />
     </div>
   );
 }
